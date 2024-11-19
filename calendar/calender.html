@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calender</title>
+  <link rel="stylesheet" href="calender.css">
+  <script src="calender.js"></script>
+</head>
+<body>
+  
+  <h1 class="title">Fill-me-Up!</h1>
+
+  <div class="calendar-container">
+    <div class="wrap-ym">
+      <div class="calendar-header">
+        <button id="prev-month" class="nav-button">◀</button>
+        <span id="current-month" class="month-display">2024.11</span>
+        <button id="next-month" class="nav-button">▶</button>
+      </div>
+    </div>
+
+    <div class="wrap flex jcc aic">
+      <div class="calendar-days">
+        <div class="day">SUN</div>
+        <div class="day">MON</div>
+        <div class="day">TUE</div>
+        <div class="day">WED</div>
+        <div class="day">THU</div>
+        <div class="day">FRI</div>
+        <div class="day">SAT</div>
+      </div>
+    </div>
+
+    <div id="calendar-grid" class="calendar-grid"></div>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2>Add Schedule</h2>
+      <form id="schedule-form">
+        <input type="text" id="schedule" placeholder="추가할 일정을 입력하세요." required />
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div> -->
+
+  <script>
+    Calendar.$candlar = document.querySelector('.calendar');
+    Calendar.init();
+  </script>
+
+</body>
+</html>
