@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정관리 앱</title>
+
+    <!-- reset.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <!-- linear icons -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- custom js -->
+    <script src="js/app.js" defer></script>
+
+</head>
+<body>
+    
+    <div class="wrapper">
+        
+        <section class="todo-template">
+            
+            <h1 class="app-title">일정 관리</h1>
+            <div class="content">
+                <form class="todo-insert">
+                    <input type="text" id="todo-text" placeholder="할 일을 입력하세요" autocomplete="off">
+                    <button type="submit" id="add"><span class="lnr lnr-plus-circle"></span></button>
+                </form>
+                <ul class="todo-list">
+                   
+                </ul>
+            </div>
+            
+        </section>
+        <div class='rap'>
+            <div class="header">
+               <div class="btn prevDay"></div>
+              <h2 class='dateTitle'></h2>
+              <div class="btn nextDay"></div>
+            </div>
+            
+            <div class="grid dateHead">
+              <div>일</div>
+              <div>월</div>
+              <div>화</div>
+              <div>수</div>
+              <div>목</div>
+              <div>금</div>
+              <div>토</div>
+            </div>
+            <div class="grid dateBoard"></div>
+          </div>
+    </div>
+
+    
+</body>
+</html>

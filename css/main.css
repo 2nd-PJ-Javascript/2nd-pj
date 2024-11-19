@@ -11,19 +11,21 @@ input, button {
 }
 
 /* layout */
+
 .wrapper {
   background: #e9ecef;
   padding-top: 64px;
-  height: 100vh;
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 가운데 정렬 */
 }
 
 section.todo-template {
-  background: tomato;
-  width: 512px;
+
+  width: 400px; /* 일정 관리 섹션 크기 조정 */
   border-radius: 5px;
-  margin: 0 auto;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  z-index: 1;
 }
 section.todo-template .app-title {
   background: #22b8cf;
@@ -130,4 +132,84 @@ section.todo-template .content .todo-list .todo-list-item .modify {
 }
 section.todo-template .content .todo-list .todo-list-item .remove {  
   color: red;    
+}
+section.todo-template .content .todo-list .todo-list-item .openModal {  
+  color: black;    
+  }
+
+  /* 달력 */
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
+}
+
+.grid div {
+  padding: .6rem;
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+.dateBoard div {
+  color: #222;
+  font-weight: bold;
+  min-height: 6rem;
+  padding: .6rem .8rem;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.noColor {
+  background: #eee;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+/* 좌우 버튼 */
+.btn {
+ display: block;
+ width: 20px;
+ height: 20px;
+ border: 3px solid #000;
+ border-width: 3px 3px 0 0;
+ cursor: pointer;
+}
+
+.prevDay {
+  transform: rotate(-135deg);
+}
+
+.nextDay {
+  transform: rotate(45deg);
+}
+
+/* ---- */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;  
+  font-family: Pretendard;
+}
+
+.rap {
+  max-width: 600px; /* 달력 섹션 크기 조정 */
+  padding: 0 1.4rem;
+  margin-top: 0; /* 위쪽 마진 제거 */
+  display: block;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.dateHead {
+  margin: .4rem 0;
 }
