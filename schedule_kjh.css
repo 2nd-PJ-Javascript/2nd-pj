@@ -3,6 +3,8 @@ body {
   background-color: #f7f7f7;
   margin: 0;
   padding: 0;
+
+ 
 }
 .schedule-manager {
   max-width: 600px;
@@ -25,13 +27,10 @@ body {
   margin-bottom: 5px;
 }
 .form-group input, .form-group select {
-
+  
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-.form-group input[type="date"] {
-  padding: 8px;
 }
 
 .form-group .category-options label {
@@ -42,7 +41,7 @@ body {
 .form-group .category-options input {
   margin-right: 10px;
 }
-button {
+button.submit {
   width: 100%;
   padding: 10px;
   background-color: #4CAF50;
@@ -52,7 +51,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-button:hover {
+button.submit:hover {
   background-color: #45a049;
 } 
 
@@ -68,7 +67,7 @@ button:hover {
   background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  display: none; /* 기본적으로 숨김 */
+  display: block; /* 기본적으로 숨김 */
   z-index: 1000;
   pointer-events: auto; /* 모달 클릭 허용 */
 }
@@ -83,12 +82,17 @@ button:hover {
   text-align: center;
 }
 
+.date-select input {
+  width: 200px;
+  height: 40px;
+}
+
 body.modal-open {
   overflow: hidden; /* 모달이 뜬 동안 스크롤 비활성화 */
 }
 
+/* 오버레이 스타일 */
 #modal-overlay {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -96,5 +100,6 @@ body.modal-open {
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  pointer-events: auto; /* 오버레이가 클릭 이벤트를 받도록 설정 */
+  display: none; /* 기본적으로 숨김 */
+  pointer-events: auto; /* 오버레이 클릭 허용 */
 }
