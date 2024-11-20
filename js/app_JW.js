@@ -1,8 +1,83 @@
+
+// const calendar = {
+//   {year: 2024,
+//   'JAN' :{
+//     month: 'JAN',
+//     day: 31
+//   }}
+// }
+
+
+const posts = {
+  count: 3,
+  postList: [
+    {
+      id: 1,
+      title: '',
+      replies: [
+        {
+          id: 1,
+          contemt: ''
+        }
+      ],
+      hashtags: ['a', 'b', 'c'],
+      regDate: '2024-01-01',
+      author: {
+        name: '',
+        
+      } ,
+      
+    },
+    {
+      id: 2,
+      title: '',
+      replies: [{},{},{}],
+      hashtags: ['a', 'b', 'c']
+    },
+    {
+      id: 2,
+      title: '',
+      replies: [{},{},{}],
+      hashtags: ['a', 'b', 'c']
+    }
+  ]
+};
+
+const todos = 
+  {
+    '20240101': {
+      category: 'emergency',
+      todoList: [
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+      ]},
+    '20240102':  [
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+        {title: '', done:false, id:1},
+      ],
+  }
+
+
+
+todos['20240103'] = [];
+const firsttodo = {title:'', done:false, id:5};
+todos['20240103'].push(firsttodo)
+
+console.log(todos);
+
+
+
 initial();
 function initial() {
 const nowC = new Date();
 let yearC = nowC.getFullYear();
 let monthC = nowC.getMonth();
+let dayC = nowC.getDate();
+
 
 buttonClick();
 function buttonClick() {
@@ -105,9 +180,20 @@ $next.addEventListener('click', e => {
 });
 }
 }
-const $datesC = document.querySelector('.datesC');
+const $datesC = document.querySelector('.datesC'); // ul 매월(월 요소)
 const $today = document.querySelector('.today-btn-corner')
 $today.addEventListener('click', e => {       
   $datesC.innerHTML = ``;
   initial();
+//   const dateElements = document.querySelectorAll(".dateC"); // li 매일(요일 요소)
+//   dateElements.forEach(el => {
+//     // 날짜 텍스트가 오늘 날짜와 같으면 하이라이트 클래스 추가
+//     if (parseInt(el.textContent) === dayC) {
+//       el.classList.add("highlight");
+//       // 1초 후 하이라이트 제거 (애니메이션 효과 종료)
+//       setTimeout(() => {
+//         el.classList.remove("highlight");
+//       }, 1000);
+//     }
+// })
 });
