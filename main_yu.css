@@ -1,9 +1,21 @@
-
-
-.dropdown-menu {
-    display: none;
-    border: 1px solid #000;
+button{ /*버튼 기본 스타일 초기화*/
+    all: unset;
 }
-.show {
-    display: block; 
+.dropdown{
+    position: fixed;
+    z-index: 1000;
+    top: 85px;
+    left: 270px;
+}
+.dropdown .dropdown-toggle{
+    font-size: 45px;
+    color: white;
+}
+.dropdown .dropdown-menu{
+    border: 1px solid #000;
+    position: fixed;
+    left: -100%;
+}
+.dropdown .dropdown-menu.show{
+    left: 0;
 }
