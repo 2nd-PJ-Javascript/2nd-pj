@@ -4,7 +4,11 @@ body {
   margin: 0;
   padding: 0;
 
- 
+strong{
+font-size: 20px;
+color: rgb(137, 49, 236);
+font-weight: 800;
+}
 }
 .schedule-manager {
   max-width: 600px;
@@ -41,6 +45,28 @@ body {
 }
 .form-group .category-options input {
   margin-right: 10px;
+}
+
+.form-group .category-options p.festival{
+  display: inline;
+  text-decoration: underline;
+  text-decoration-color: pink;
+  text-decoration-thickness: 3px;
+  
+}
+.form-group .category-options p.study{
+  display: inline;
+  text-decoration: underline;
+  text-decoration-color: yellow;
+  text-decoration-thickness: 3px;
+  
+  
+}
+.form-group .category-options p.travel{
+  display: inline;
+  text-decoration: underline;
+  text-decoration-color: #45a049;
+  text-decoration-thickness: 3px;
 }
 button.submit {
   width: 100%;
@@ -95,6 +121,7 @@ body.modal-open {
 
 }
 
+
 /* 오버레이 스타일 */
 #modal-overlay {
   position: fixed;
@@ -107,3 +134,4 @@ body.modal-open {
   display: none; /* 기본적으로 숨김 */
   pointer-events: auto; /* 오버레이 클릭 허용 */
 }
+
