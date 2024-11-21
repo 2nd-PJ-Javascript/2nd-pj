@@ -1,11 +1,11 @@
 const $date = document.querySelector('.datesC');
-const $submit =document.querySelector('.submit');
+
 
 
 // 날짜 클릭 시 모달 표시
 $date.addEventListener('click', (e) => {
   if (!e.target.matches('.dateC')) return; // 날짜가 아닌 곳 클릭 시 무시
-  
+
   // 모달 동적으로 생성
   const $modalWrapper = document.createElement('div');
   
@@ -64,12 +64,19 @@ $date.addEventListener('click', (e) => {
   $modalWrapper.querySelector('.schedule-manager').style.display = 'block';
   document.body.classList.add('modal-open'); // 스크롤 비활성화
 
+
+  const $submit =document.querySelector('.submit');
+
+  $submit.addEventListener('click' , e =>{
+    
+    
+  });
+
   // 오버레이 클릭 시 모달 닫기
   $overlay.addEventListener('click', () => {
     closeModal($modalWrapper, $overlay);
   });
 });  //$date이벤트 리스너 종료
-
 
 
 

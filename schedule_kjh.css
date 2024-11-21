@@ -13,6 +13,7 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 .schedule-manager h1 {
   text-align: center;
@@ -50,6 +51,7 @@ button.submit {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
 }
 button.submit:hover {
   background-color: #45a049;
@@ -67,9 +69,10 @@ button.submit:hover {
   background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  display: block; /* 기본적으로 숨김 */
+  display: none; /* 기본적으로 숨김 */
   z-index: 1000;
   pointer-events: auto; /* 모달 클릭 허용 */
+  
 }
 
 .schedule-manager form {
@@ -89,6 +92,7 @@ button.submit:hover {
 
 body.modal-open {
   overflow: hidden; /* 모달이 뜬 동안 스크롤 비활성화 */
+
 }
 
 /* 오버레이 스타일 */
