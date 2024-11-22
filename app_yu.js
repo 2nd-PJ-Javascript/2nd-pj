@@ -2,6 +2,7 @@ const $dropdownButton = document.querySelector(".dropdown-toggle");
 const $dropdownMenu = document.querySelector(".dropdown-menu");
 const $startDayIsMonday = document.querySelector(".start-day-is-monday");
 const $datesOfWeek = document.querySelector(".dates-of-week");
+const $datesC = document.querySelector(".datesC")
 
 let year = 2024;
 let month = 11;
@@ -16,41 +17,41 @@ if (firstDateOfTheMonth === 1) {
   //1일이 월요일이면 공갈 디브 1개 생성
   const $emptyDiv = document.createElement("div");
   $emptyDiv.textContent = "";
-  $datesOfWeek.append($emptyDiv);
+  $datesC.append($emptyDiv);
 } else if (firstDateOfTheMonth === 2) {
   //1일이 화요일이면 공갈 디브 2개 생성
   for (let i = 0; i < 2; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesOfWeek.append($emptyDiv);
+    $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 3) {
   //1일이 수요일이면 공갈 디브 3개 생성
   for (let i = 0; i < 3; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesOfWeek.append($emptyDiv);
+    $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 4) {
   //1일이 목요일이면 공갈 디브 4개 생성
   for (let i = 0; i < 4; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesOfWeek.append($emptyDiv);
+    $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 5) {
   //1일이 금요일이면 공갈 디브 5개 생성
   for (let i = 0; i < 5; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesOfWeek.append($emptyDiv);
+    $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 6) {
   //1일이 토요일이면 공갈 디브 6개 생성
   for (let i = 0; i < 6; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesOfWeek.append($emptyDiv);
+    $datesC.append($emptyDiv);
   }
 }
 
@@ -59,9 +60,10 @@ for (let i = 1; i <= lastDate; i++) {
   const $newDiv = document.createElement("div");
   $newDiv.classList.add("dateC");
   $newDiv.textContent = i;
-  $datesOfWeek.append($newDiv);
+  $datesC.append($newDiv);
 }
 
+//-------------사이드 메뉴 바--------------------------------
 $dropdownButton.addEventListener("click", function () {
   $dropdownMenu.classList.toggle("show");
 });
@@ -76,4 +78,6 @@ $startDayIsMonday.addEventListener("click", function () {
   $datesOfWeek.children[4].textContent = $datesOfWeek.children[5].textContent;
   $datesOfWeek.children[5].textContent = $datesOfWeek.children[6].textContent;
   $datesOfWeek.children[6].textContent = temp;
+
+  $datesC.children[0].remove();
 });

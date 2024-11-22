@@ -1,21 +1,66 @@
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #444;
+}
+
 button{ /*버튼 기본 스타일 초기화*/
     all: unset;
 }
 .dropdown{
-    position: fixed;
+    position: absolute;
     z-index: 1000;
     top: 85px;
-    left: 270px;
+    left: 280px;
 }
 .dropdown .dropdown-toggle{
     font-size: 45px;
     color: white;
+    
 }
 .dropdown .dropdown-menu{
-    border: 1px solid #000;
-    position: fixed;
-    left: -100%;
+    /* border: 1px solid #000; */
+    height: 200px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 10px;
+    right: 130px;
+    display: none;
+}
+.dropdown .dropdown-menu ul{
+    /* border: 1px solid greenyellow; */
+    height: 25px;
+    background-color: #f0f0f0;
+    font-weight: 700;
+    color: #444;
+}
+.dropdown .dropdown-menu li.start-day{
+    height: 25px;
+    border: none;
+    font-size: 15px;
+    padding-left: 5px;
+    padding-top: 10px;
+    background-color: #fff;
+    /* display: none; */
+}
+.dropdown .dropdown-menu li:hover{
+    background: #ddd;
+}
+.dropdown .dropdown-menu li a{
+    display: block;
+}
+.dropdown .dropdown-menu .change-start-day{
+    font-size: 15px;
+    padding-left: 5px;
+    padding-top: 10px;
 }
 .dropdown .dropdown-menu.show{
-    left: 0;
+    display: block;
+}
+.dropdown .dropdown-menu ul.change-start-day:hover > li.start-day{
+    display: block;
 }
