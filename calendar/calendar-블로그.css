@@ -1,10 +1,14 @@
 /* Reset CSS */
 @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css");
+/* Montserrat Google-Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+/* Noto Sans Korean Google-Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 /*  =========================메인 달력============================ */
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: "NotoSans Korean", sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -168,11 +172,12 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
+/* JS 작업 전 메인 공용 달력 위에 얹은 채로 css 작업 진행*/
 .wrap {
   position: absolute;
 }
 
+/* 전체 box */
 .calendar-box {
   position: relative;
   width: 90vw; /* 화면 너비의 90% */
@@ -188,65 +193,84 @@ body {
   /* opacity: 0.9; */
 }
 
+
+/* ========= header ========*/
+
 header {
-  /* background: yellow; */
   flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .calendar-box header .top {
   background: #333;
-  padding: 24px;
+  padding: 22px;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 2.2px;
+  font-family: "Montserrat", sans-serif;
 }
 
-.wrap-header .top p {
-  font-size: 26px;
-  font-weight: 800;
-  color: #fff;
-}
 
 .calendar-box header .bottom {
   background: #fb593c;
-  padding: 16px;
+  padding: 13px;
   filter: drop-shadow(2px 6px 5px rgba(0, 0, 0, 0.3));
-}
-
-.calendar-box header .bottom p {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.2rem;
+  font-family: "Noto Sans KR", sans-serif;
   color: #333;
+  text-align: center;
+  width: 100%;
 }
 
-.main-content {
-  background: fff;
+
+
+/* ======== main content ======== */
+
+/* 전체 box */
+.main-content {   
+  /* background: lightblue; */
+  background: #fff;
   flex: 12;
+  width: 75%;
+  margin: 40px auto 0;
 }
 
-button.back-to-main{
-  background: lightgray;
-  cursor: pointer;
-  flex: 1;
+/* header */
+.blog-header {
+  /* background: lightcyan; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background: gray; */
 }
 
+.under-bar {
+  background: #ddd;
+  height: 2px;
+  text-decoration: underline;
+  align-items: start;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.blog-header .title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: #333;
+  border: none;
+  outline: none;
+  margin: 30px 0 5px 20px;
+  width: 25vw;
+  padding: 5px;
+}
 
 
 /* =======토글 컨테이너====== */
@@ -254,6 +278,7 @@ button.back-to-main{
   position: relative;
   width: 60px;
   height: 30px;
+  /* margin-right: 20px; */
 }
 
 /* 숨김 체크박스 */
@@ -288,11 +313,165 @@ button.back-to-main{
 
 /* 체크되었을 때의 상태 */
 .toggle-input:checked + .toggle-label {
-  background-color: orangered;
+  background-color: #333;
 }
 
 .toggle-input:checked + .toggle-label::after {
   transform: translateX(30px);
 }
 
+.wrap-toggle-text {
+  /* background: yellow; */
+  display: flex;
+}
+
+.toggle-text-A, .toggle-text-B {
+  margin-left: 70px;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+}
+
 /* =======토글 컨테이너 end====== */
+
+
+/* 메인 글 작성칸 input box */
+.blog-write-box {
+  background: #f6f6f6;
+  height: 35vh;
+  border-radius: 20px;
+  padding: 20px;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* 스크롤바 */
+.styled-scroller {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+  overflow-y: auto
+}
+
+/* 스크롤바 스타일 */
+.styled-scroller::-webkit-scrollbar {
+  width: 100px; /* 스크롤바 너비 */
+}
+
+.styled-scroller::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px; 
+}
+
+.styled-scroller::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+.styled-scroller::-webkit-scrollbar-track {
+  background-color: #f1f1f1; 
+}
+
+
+/* ======== blog 하단 명언/ 저장 구간 ======== */
+.blog-bottom {
+  /* background: lightskyblue; */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+}
+
+.good-words-top {
+  /* background: green; */
+  font-size: 18px;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 12px;
+  margin-left: 20px;
+
+}
+
+.under-bar-bottom {
+  height: 1px;
+  background: #ddd;
+  margin-left: 20px;
+}
+.good-words-box {
+  display: flex;
+  justify-content: space-between;
+  width: 140%;
+  padding: 15px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 10px;
+  background: #f6f6f6;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.good-word-bottom-01, .good-word-bottom-02 {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+}
+
+.good-word-bottom-02 {
+  color: #777;
+  font-size: 14px;
+}
+
+/*  저장 버튼 */
+.wrap-save-button {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.save {
+  border: none;
+  height: 40px;
+  width: 65px;
+  border-radius: 10px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save:hover {
+  background: #333;
+  color: #f6f6f6;
+  filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+
+/* ======== 하단 '메인으로' 버튼 ======== */
+.wrap-button {
+  display: flex;
+  justify-content: end;
+}
+
+button.back-to-main {
+  width: 50px;
+  bottom: 0.5%;
+  right: 0.5%;
+  width: 60px;
+  height: 60px;
+  background-color: #777;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  align-items: end;
+  font-size: 13px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.wrap-button .back-to-main:hover {
+  background: #fb593c;
+  cursor: pointer;
+  transform: scale(1.1);
+}
