@@ -14,40 +14,40 @@ let firstDateOfTheMonth = new Date(year, month - 1, 1).getDay(); //1일 요일 �
 //console.log(firstDateOfTheMonth.toLocaleString('ko-KR',{timeZone: 'Asia/Seoul'})); //5
 
 if (firstDateOfTheMonth === 1) {
-  //1일이 월요일이면 공갈 디브 1개 생성
+  //1일이 월요일이면 빈 디브 1개 생성
   const $emptyDiv = document.createElement("div");
   $emptyDiv.textContent = "";
   $datesC.append($emptyDiv);
 } else if (firstDateOfTheMonth === 2) {
-  //1일이 화요일이면 공갈 디브 2개 생성
+  //1일이 화요일이면 빈 디브 2개 생성
   for (let i = 0; i < 2; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
     $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 3) {
-  //1일이 수요일이면 공갈 디브 3개 생성
+  //1일이 수요일이면 빈 디브 3개 생성
   for (let i = 0; i < 3; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
     $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 4) {
-  //1일이 목요일이면 공갈 디브 4개 생성
+  //1일이 목요일이면 빈 디브 4개 생성
   for (let i = 0; i < 4; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
     $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 5) {
-  //1일이 금요일이면 공갈 디브 5개 생성
+  //1일이 금요일이면 빈 디브 5개 생성
   for (let i = 0; i < 5; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
     $datesC.append($emptyDiv);
   }
 } else if (firstDateOfTheMonth === 6) {
-  //1일이 토요일이면 공갈 디브 6개 생성
+  //1일이 토요일이면 빈 디브 6개 생성
   for (let i = 0; i < 6; i++) {
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
