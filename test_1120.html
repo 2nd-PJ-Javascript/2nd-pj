@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Calendar with Events</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #007bff, #00d4ff);
+    }
+
+    .calendar {
+      width: 90%;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .dates-of-week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      background: #f0f0f0;
+      padding: 10px 0;
+      font-weight: bold;
+    }
+
+    .datesC {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .dateC {
+      text-align: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dateC:hover {
+      background: #007bff;
+      color: white;
+    }
+
+    .event {
+      margin-top: 5px;
+      padding: 5px;
+      background: #ffd700;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    .event:hover {
+      background: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="header">
+      <button id="prev">←</button>
+      <span id="monthYear"></span>
+      <button id="next">→</button>
+    </div>
+    <div class="dates-of-week">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+    <div class="datesC"></div>
+  </div>
+
+  <script>// 전역 변수 및 데이터 저장 객체
+    let currentDate = new Date();
+    const eventStorageKey = "calendarEvents"; // 로컬스토리지 키
+    const datesContainer = document.querySelector(".datesC");
+    const monthYearElement = document.getElementById("monthYear");
+    
+    // 로컬 스토리지에서 데이터 불러오기
+    function loadEvents() {
+      const data = localStorage.getItem(eventStorageKey);
+      return data ? JSON.parse(data) : {};
+    }
+    
+    // 로컬 스토리지에 데이터 저장
+    function saveEvents(events) {
+      localStorage.setItem(eventStorageKey, JSON.stringify(events));
+    }
+    
+    // 날짜 데이터를 생성
+    function generateCalendar(year, month) {
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const events = loadEvents();
+      const monthKey = `${year}-${String(month + 1).padStart(2, "0")}`;
+    
+      // 기존 달력 초기화
+      datesContainer.innerHTML = "";
+    
+      // 빈 칸 추가
+      for (let i = 0; i < firstDay; i++) {
+        const emptyDiv = document.createElement("div");
+        datesContainer.appendChild(emptyDiv);
+      }
+    
+      // 날짜 추가
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateDiv = document.createElement("div");
+        dateDiv.classList.add("dateC");
+        dateDiv.textContent = day;
+    
+        // 이벤트 표시
+        if (events[monthKey] && events[monthKey][day]) {
+          const eventText = document.createElement("div");
+          eventText.classList.add("event");
+          eventText.textContent = events[monthKey][day];
+          dateDiv.appendChild(eventText);
+        }
+    
+        // 일정 추가 이벤트
+        dateDiv.addEventListener("click", () => {
+          const event = prompt("일정을 입력하세요:");
+          if (event) {
+            if (!events[monthKey]) events[monthKey] = {};
+            events[monthKey][day] = event;
+            saveEvents(events);
+            generateCalendar(year, month);
+          }
+        });
+    
+        datesContainer.appendChild(dateDiv);
+      }
+    }
+    
+    // 이전/다음 버튼
+    document.getElementById("prev").addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      updateCalendar();
+    });
+    
+    document.getElementById("next").addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      updateCalendar();
+    });
+    
+    // 캘린더 업데이트
+    function updateCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      monthYearElement.textContent = `${year}년 ${month + 1}월`;
+      generateCalendar(year, month);
+    }
+    
+    // 초기화
+    updateCalendar();
+    </script>
+</body>
+</html>
