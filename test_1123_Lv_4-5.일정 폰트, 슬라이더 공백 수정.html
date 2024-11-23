@@ -139,6 +139,10 @@
         box-shadow: none;
       }
 
+      .dateC div {
+      font-weight: 600;
+      }
+
       /* Today 버튼 */
       .today-btn-corner,
       .reset-btn-corner {
@@ -305,18 +309,12 @@
         z-index: 999; /* 슬라이더보다 위 */
         background: rgba(0, 0, 0, 0); /* 보이지 않음 */
       }
-
-      #eventList li {
-        list-style: none;
+      #eventList li div {
         display: flex;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
+        flex-direction: column;
+        gap: 7px; /* 날짜+타이틀과 내용 사이의 간격 */
       }
 
-      #eventList li span {
-        margin-right: 10px;
-      }
       @keyframes blinkEffect {
         0%,
         100% {
@@ -399,6 +397,7 @@
         </div>
         <button id="saveBtn">저장</button>
       </div>
+
     </div>
     <div id="slider" class="hidden-slider">
       <ul id="eventList">
@@ -478,6 +477,7 @@
             const eventDiv = document.createElement("div");
             eventDiv.textContent = title;
             eventDiv.style.background = color || selectedColor;
+
             eventDiv.style.color = "#fff";
             eventDiv.style.padding = "5px";
             eventDiv.style.borderRadius = "5px";
@@ -547,7 +547,6 @@
             const listItem = document.createElement("li");
             listItem.style.display = "flex";
             listItem.style.alignItems = "center";
-            listItem.style.marginBottom = "10px";
             listItem.style.padding = "10px";
             listItem.style.borderBottom = "1px solid #ddd";
 
@@ -561,11 +560,14 @@
 
             // 텍스트 콘텐츠
             const textContent = document.createElement("div");
+            textContent.style.display = "flex";
+            textContent.style.flexDirection = "column";
             textContent.innerHTML = `
-        <strong>${monthKey}-${String(day).padStart(2, "0")}</strong><br>
-        <span><strong>제목:</strong> ${title || ""}</span><br>
-        <span><strong>내용:</strong> ${content || ""}</span>
-      `;
+  <span>${monthKey}-${String(day).padStart(2, "0")} | ${title || ""}</span>
+  <span>
+    <strong>내용:</strong> ${content || ""}
+  </span>
+`;
 
             // 삭제 버튼
             const deleteButton = document.createElement("button");

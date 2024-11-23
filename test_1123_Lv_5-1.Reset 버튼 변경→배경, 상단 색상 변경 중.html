@@ -139,9 +139,13 @@
         box-shadow: none;
       }
 
+      .dateC div {
+        font-weight: 600;
+      }
+
       /* Today 버튼 */
       .today-btn-corner,
-      .reset-btn-corner {
+      .color-btn-corner {
         position: absolute;
         width: 60px;
         height: 60px;
@@ -163,13 +167,13 @@
         background-color: #007bff;
       }
 
-      .reset-btn-corner {
+      .color-btn-corner {
         bottom: 0.5%;
         left: 0.5%;
         background-color: #ff6b6b;
       }
 
-      .reset-btn-corner:hover {
+      .color-btn-corner:hover {
         background-color: #b63939;
         transform: scale(1.2);
       }
@@ -178,6 +182,63 @@
         background-color: #0056b3;
         transform: scale(1.2);
       }
+
+      #colorButtonContainer {
+        position: absolute;
+        pointer-events: none; /* 클릭 이벤트 방지 */
+      }
+
+      .color-circle {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: transparent;
+        opacity: 0;
+        transform: translate(0, 0);
+        transition: transform 0.4s ease, opacity 0.4s ease;
+      }
+
+      .color-circle.show {
+        opacity: 1;
+      }
+
+      .color-circle:nth-child(1) {
+        --angle: 0deg; /* 00시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(2) {
+        --angle: 15deg; /* 01시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(3) {
+        --angle: 30deg; /* 02시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(4) {
+        --angle: 45deg; /* 03시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(5) {
+        --angle: 60deg; /* 04시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(6) {
+        --angle: 75deg; /* 05시 방향 */
+        --distance: 100px;
+      }
+      .color-circle:nth-child(7) {
+        --angle: 90deg; /* 06시 방향 */
+        --distance: 100px;
+      }
+
+      .color-circle.show {
+        transform: translate(
+          calc(var(--distance) * cos(var(--angle))),
+          calc(var(--distance) * sin(var(--angle)))
+        );
+      }
+
       .modal {
         position: fixed;
         top: 50%;
@@ -242,22 +303,6 @@
       #saveBtn:hover {
         background: #0056b3;
       }
-
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
-      }
-
-      .modal-overlay.active {
-        display: block;
-      }
-
       .color-picker {
         display: flex;
         justify-content: space-around;
@@ -305,18 +350,12 @@
         z-index: 999; /* 슬라이더보다 위 */
         background: rgba(0, 0, 0, 0); /* 보이지 않음 */
       }
-
-      #eventList li {
-        list-style: none;
+      #eventList li div {
         display: flex;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
+        flex-direction: column;
+        gap: 7px; /* 날짜+타이틀과 내용 사이의 간격 */
       }
 
-      #eventList li span {
-        margin-right: 10px;
-      }
       @keyframes blinkEffect {
         0%,
         100% {
@@ -355,7 +394,8 @@
         <div>Sat</div>
       </div>
       <div class="datesC"></div>
-      <button class="reset-btn-corner">Reset</button>
+      <button class="color-btn-corner">Color</button>
+      <div id="colorButtonContainer"></div>
       <button class="today-btn-corner">Today</button>
     </div>
     <!-- 모달 -->
@@ -473,11 +513,21 @@
           dateDiv.classList.add("dateC");
           dateDiv.textContent = day;
 
+          const currentDay = new Date(year, month, day).getDay(); // 0: 일요일, 6: 토요일
+
+          // 일요일 빨간색, 토요일 파란색
+          if (currentDay === 0) {
+            dateDiv.style.color = "red";
+          } else if (currentDay === 6) {
+            dateDiv.style.color = "blue";
+          }
+
           if (events[monthKey] && events[monthKey][day]) {
             const { title, color } = events[monthKey][day];
             const eventDiv = document.createElement("div");
             eventDiv.textContent = title;
             eventDiv.style.background = color || selectedColor;
+
             eventDiv.style.color = "#fff";
             eventDiv.style.padding = "5px";
             eventDiv.style.borderRadius = "5px";
@@ -547,7 +597,6 @@
             const listItem = document.createElement("li");
             listItem.style.display = "flex";
             listItem.style.alignItems = "center";
-            listItem.style.marginBottom = "10px";
             listItem.style.padding = "10px";
             listItem.style.borderBottom = "1px solid #ddd";
 
@@ -561,10 +610,15 @@
 
             // 텍스트 콘텐츠
             const textContent = document.createElement("div");
+            textContent.style.display = "flex";
+            textContent.style.flexDirection = "column";
             textContent.innerHTML = `
-        <strong>${monthKey}-${String(day).padStart(2, "0")}</strong><br>
-        <span><strong>제목:</strong> ${title || ""}</span><br>
-        <span><strong>내용:</strong> ${content || ""}</span>
+        <span>${monthKey}-${String(day).padStart(2, "0")} | ${
+              title || ""
+            }</span>
+        <span>
+          <strong>내용:</strong> ${content || ""}
+        </span>
       `;
 
             // 삭제 버튼
@@ -643,8 +697,50 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         updateSlider(); // 슬라이더 초기화
-      });
+        const colorButton = document.querySelector(".color-btn-corner");
+        const colorContainer = document.getElementById("colorButtonContainer");
 
+        const colors = [
+          "#ff7fbf",
+          "#c9366e",
+          "#007bff",
+          "#36c991",
+          "#a46ac8",
+          "#ffd700",
+          "#00ffff",
+        ];
+
+        function createColorCircles(button) {
+          const rect = button.getBoundingClientRect(); // 버튼 위치 계산
+          const centerX = window.scrollX;
+          const centerY = window.scrollY + 900;
+
+          colorContainer.innerHTML = ""; // 기존 색상 버튼 초기화
+
+          colors.forEach((color, index) => {
+            const colorCircle = document.createElement("div");
+            colorCircle.className = "color-circle";
+            colorCircle.style.backgroundColor = color;
+            colorCircle.style.setProperty("--angle", `${index * 15}deg`); // 각도 동적 설정
+            colorCircle.style.left = `${centerX}px`;
+            colorCircle.style.top = `${centerY}px`;
+            colorContainer.appendChild(colorCircle);
+          });
+        }
+
+        // 버튼 위에 마우스 진입
+        colorButton.addEventListener("mouseenter", () => {
+          createColorCircles(colorButton);
+          const circles = colorContainer.querySelectorAll(".color-circle");
+          circles.forEach((circle) => circle.classList.add("show")); // 애니메이션 시작
+        });
+
+        // 버튼 위에서 마우스 벗어남
+        colorButton.addEventListener("mouseleave", () => {
+          const circles = colorContainer.querySelectorAll(".color-circle");
+          circles.forEach((circle) => circle.classList.remove("show")); // 애니메이션 초기화
+        });
+      });
       //닫기 버튼 클릭
       closeBtn.addEventListener("click", () => {
         modal.style.display = "none";
@@ -790,17 +886,6 @@
           monthText.textContent = currentMonth + 1; // 월 업데이트 (0부터 시작하므로 +1)
 
           updateCalendar(); // 캘린더 업데이트
-        });
-
-      // Reset 버튼 기능
-      document
-        .querySelector(".reset-btn-corner")
-        .addEventListener("click", () => {
-          if (confirm("정말 모든 데이터를 초기화하시겠습니까?")) {
-            localStorage.removeItem("calendarEvents"); // 로컬 스토리지 데이터 삭제
-            generateCalendar(currentYear, currentMonth); // 현재 달력을 초기화
-            alert("모든 데이터가 초기화되었습니다.");
-          }
         });
 
       // 초기화
