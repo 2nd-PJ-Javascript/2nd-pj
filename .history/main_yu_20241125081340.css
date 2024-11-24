@@ -85,7 +85,7 @@ button{
     -webkit-text-fill-color: transparent;
 }
 .dropdown .dropdown-menu ul.change-colors .colors li.theme-color2{
-    background: linear-gradient(45deg, beige 50%, rgba(77, 55, 15, 0.747) 50%);
+    background: linear-gradient(45deg, beige 50%, brown 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -94,7 +94,7 @@ button{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dropdown .dropdown-menu ul.change-colors .colors li.theme-color4{
+.dropdown .dropdown-menu ul.change-colors .colors li.melon-darkgray{
     background: linear-gradient(45deg, rgb(127, 221, 170) 50%, rgb(79, 88, 88) 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

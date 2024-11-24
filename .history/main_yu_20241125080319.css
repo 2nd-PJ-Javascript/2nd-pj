@@ -10,8 +10,8 @@ button{
 }
 .dropdown{
     position: absolute;
-    top: 10%;
-    left: 9%;
+    top: 9%;
+    left: 10%;
     /* border: 1px solid #000; */
     width: 180px;
     z-index: 100;
@@ -79,22 +79,22 @@ button{
 .dropdown .dropdown-menu ul.change-colors .colors li{
     font-size: 30px;
 }
-.dropdown .dropdown-menu ul.change-colors .colors li.theme-color1 {
+.dropdown .dropdown-menu ul.change-colors .colors li.pink-white {
     background: linear-gradient(45deg, pink 50%, white 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dropdown .dropdown-menu ul.change-colors .colors li.theme-color2{
-    background: linear-gradient(45deg, beige 50%, rgba(77, 55, 15, 0.747) 50%);
+.dropdown .dropdown-menu ul.change-colors .colors li.beige-brown{
+    background: linear-gradient(45deg, beige 50%, brown 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dropdown .dropdown-menu ul.change-colors .colors li.theme-color3{
+.dropdown .dropdown-menu ul.change-colors .colors li.lemon-lightgray{
     background: linear-gradient(45deg, rgb(231, 231, 195) 50%, rgb(219, 218, 218) 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dropdown .dropdown-menu ul.change-colors .colors li.theme-color4{
+.dropdown .dropdown-menu ul.change-colors .colors li.melon-darkgray{
     background: linear-gradient(45deg, rgb(127, 221, 170) 50%, rgb(79, 88, 88) 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

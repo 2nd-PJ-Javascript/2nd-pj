@@ -95,13 +95,10 @@ document.querySelector('.colors').addEventListener('click', function(e){
     $header.setAttribute("style", "background: pink;"); //헤더 배경색 핑크색으로 변경
     document.body.setAttribute("style","background: white;"); //바디 배경색 흰색으로 변경
   } else if(target === $themeColor2) { //두번째 테마 클릭 시
-    $header.setAttribute("style", "background: beige;"); //헤더 배경색 베이지색으로 변경
-    document.body.setAttribute("style","background: rgba(77, 55, 15, 0.747);"); //바디 배경색 갈색으로 변경
+    $header.setAttribute("style", "background: beige;"); //헤더 배경색 핑크색으로 변경
+    document.body.setAttribute("style","background: rgba(77, 55, 15, 0.747);"); //바디 배경색 흰색으로 변경
   } else if(target === $themeColor3) {
-    $header.setAttribute("style", "background: rgb(231, 231, 195);"); //헤더 배경색 레몬색으로 변경
-    document.body.setAttribute("style","background: rgb(219, 218, 218);"); //바디 배경색 밝은 회색으로 변경
-  } else{
-    $header.setAttribute("style", "background: rgb(127, 221, 170);"); //헤더 배경색 민트색으로 변경
-    document.body.setAttribute("style","background: rgb(79, 88, 88);"); //바디 배경색 다크 녹색으로 변경
+    $header.setAttribute("style", "background: beige;"); //헤더 배경색 핑크색으로 변경
+    document.body.setAttribute("style","background: rgba(77, 55, 15, 0.747);"); //바디 배경색 흰색으로 변경
   }
 })

@@ -4,10 +4,6 @@ const $startDayIsMonday = document.querySelector(".start-day-is-monday");
 const $datesOfWeek = document.querySelector(".dates-of-week");
 const $datesC = document.querySelector(".datesC");
 const $header = document.querySelector(".header");
-const $themeColor1 = document.querySelector(".theme-color1");
-const $themeColor2 = document.querySelector(".theme-color2");
-const $themeColor3 = document.querySelector(".theme-color3");
-const $themeColor4 = document.querySelector(".theme-color4");
 
 let year = 2024;
 let month = 11;
@@ -91,17 +87,5 @@ $startDayIsMonday.addEventListener("click", function () {
 //컬러 테마
 document.querySelector('.colors').addEventListener('click', function(e){
   const target = e.target.closest('li');
-  if(target === $themeColor1){ //첫번째 테마 클릭 시 
-    $header.setAttribute("style", "background: pink;"); //헤더 배경색 핑크색으로 변경
-    document.body.setAttribute("style","background: white;"); //바디 배경색 흰색으로 변경
-  } else if(target === $themeColor2) { //두번째 테마 클릭 시
-    $header.setAttribute("style", "background: beige;"); //헤더 배경색 베이지색으로 변경
-    document.body.setAttribute("style","background: rgba(77, 55, 15, 0.747);"); //바디 배경색 갈색으로 변경
-  } else if(target === $themeColor3) {
-    $header.setAttribute("style", "background: rgb(231, 231, 195);"); //헤더 배경색 레몬색으로 변경
-    document.body.setAttribute("style","background: rgb(219, 218, 218);"); //바디 배경색 밝은 회색으로 변경
-  } else{
-    $header.setAttribute("style", "background: rgb(127, 221, 170);"); //헤더 배경색 민트색으로 변경
-    document.body.setAttribute("style","background: rgb(79, 88, 88);"); //바디 배경색 다크 녹색으로 변경
-  }
+  if(target && target.)
 })
