@@ -1,25 +1,17 @@
 const $dateContainer = document.querySelector('.datesC');
 
-/// 카테고리별 색상 설정 함수
-function setCategoryColor(targetDate) {
-  
-  if (!targetDate.dataset.category) return;
-
-  switch (targetDate.dataset.category) {
+/// 카테고리별 색상 반환 함수
+function getCategoryColor(category) {
+  switch (category) {
     case "family":
-      targetDate.style.borderBottom = "10px solid pink";
-      break;
+      return "pink";
     case "study_hobby":
-      targetDate.style.borderBottom = "10px solid yellow";
-      break;
+      return "yellow";
     case "travel":
-      targetDate.style.borderBottom = "10px solid green";
-      break;
+      return "green";
     default:
-      targetDate.style.borderBottom = "none"; // 기본 스타일
+      return "gray"; // 기본 색상
   }
-
-  
 }
 
 /// 날짜 범위 내 모든 날짜에 색상 설정 함수
@@ -28,29 +20,44 @@ function setCategoryColorsInRange(startDate, endDate, category) {
   const end = new Date(endDate);
 
   while (currentDate <= end) {
-    // 현재 날짜를 yyyy-mm-dd 형식으로 변환
     const dateString = currentDate.toISOString().split("T")[0];
     const targetDate = document.querySelector(`.dateC[data-date="${dateString}"]`);
 
     if (targetDate) {
-      // 데이터셋 및 색상 적용
-      targetDate.dataset.category = category;
-      setCategoryColor(targetDate); // 색상 설정
+      // 색상 추가
+      let colorContainer = targetDate.querySelector('.color-container');
+      if (!colorContainer) {
+        colorContainer = document.createElement('div');
+        colorContainer.classList.add('color-container');
+        targetDate.appendChild(colorContainer);
+        targetDate.style.position = 'relative';
+      }
+
+      const existingColorBar = colorContainer.querySelector(`.color-bar[data-category="${category}"]`);
+      if (!existingColorBar) {
+        const colorBar = document.createElement('div');
+        colorBar.classList.add('color-bar');
+        colorBar.dataset.category = category;
+        colorBar.style.backgroundColor = getCategoryColor(category);
+        colorBar.style.height = '5px';
+        colorBar.style.width = '100%';
+        colorBar.style.marginTop = '2px';
+        colorContainer.appendChild(colorBar);
+      }
     }
 
-    // 다음 날짜로 이동
     currentDate.setDate(currentDate.getDate() + 1);
   }
 }
 
-// 카테고리 저장 함수
+/// 카테고리 저장 함수
 function saveCategory(categoryData) {
   const savedCategories = JSON.parse(localStorage.getItem('Category')) || [];
   savedCategories.push(categoryData);
   localStorage.setItem('Category', JSON.stringify(savedCategories));
 }
 
-// 카테고리 로드 함수
+/// 카테고리 로드 함수
 function loadCategories() {
   const savedCategories = JSON.parse(localStorage.getItem('Category')) || [];
 
@@ -60,19 +67,21 @@ function loadCategories() {
     // 날짜 범위 내 색상 및 UI 갱신
     setCategoryColorsInRange(start, end, category);
 
-    // 시작 날짜에만 제목 표시
-    const targetDate = document.querySelector(`.dateC[data-date="${start}"]`);
-    if (targetDate) {
-      targetDate.dataset.category = category;
-      targetDate.dataset.title = title;
-      targetDate.dataset.startDate = start;
-      targetDate.dataset.endDate = end;
+    // 시작 날짜에 제목 및 일정 추가
+    const startTargetDate = document.querySelector(`.dateC[data-date="${start}"]`);
+    if (startTargetDate) {
+      let scheduleList = startTargetDate.querySelector('.schedule-list');
+      if (!scheduleList) {
+        scheduleList = document.createElement('ul');
+        scheduleList.classList.add('schedule-list');
+        startTargetDate.appendChild(scheduleList);
+      }
 
-      targetDate.innerHTML = `
-        <div class="date-label">${targetDate.dataset.date.split("-")[2]}</div>
-        <strong>${title}</strong><br>
-        <small>${start} ${end && start !== end ? `~ ${end}` : ''}</small>
-      `;
+      const scheduleItem = document.createElement('li');
+      scheduleItem.classList.add('schedule-item');
+      scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
+      scheduleItem.textContent = title;
+      scheduleList.appendChild(scheduleItem);
     }
   });
 }
@@ -81,7 +90,7 @@ function loadCategories() {
 $dateContainer.addEventListener('click', (e) => {
   if (!e.target.matches('.dateC')) return;
 
-  const $targetDate = e.target; // 클릭된 날짜 버튼 참조
+  const $targetDate = e.target;
   const $clickedDate = $targetDate.dataset.date;
 
   const $modalWrapper = document.createElement('div');
@@ -151,19 +160,20 @@ $dateContainer.addEventListener('click', (e) => {
     // 시작일 데이터 및 UI 업데이트
     const startTargetDate = document.querySelector(`.dateC[data-date="${startDate}"]`);
     if (startTargetDate) {
-      startTargetDate.dataset.category = category;
-      startTargetDate.dataset.title = title;
-      startTargetDate.dataset.startDate = startDate;
-      startTargetDate.dataset.endDate = endDate;
+      let scheduleList = startTargetDate.querySelector('.schedule-list');
+      if (!scheduleList) {
+        scheduleList = document.createElement('ul');
+        scheduleList.classList.add('schedule-list');
+        startTargetDate.appendChild(scheduleList);
+      }
 
-      startTargetDate.innerHTML = `
-        <div class="date-label">${startTargetDate.dataset.date.split("-")[2]}</div>
-        <strong>${title}</strong><br>
-        <small>${startDate} ${endDate && startDate !== endDate ? `~ ${endDate}` : ''}</small>
-      `;
+      const scheduleItem = document.createElement('li');
+      scheduleItem.classList.add('schedule-item');
+      scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
+      scheduleItem.textContent = title;
+      scheduleList.appendChild(scheduleItem);
     }
 
-    // 새 데이터 로컬스토리지에 저장
     const newCategory = {
       id: String(Math.random()),
       title,
