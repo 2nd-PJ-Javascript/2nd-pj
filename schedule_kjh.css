@@ -1,15 +1,16 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+  background-color: #1E90FF; /* 파란 배경 */
   margin: 0;
   padding: 0;
+}
 
-strong{
-font-size: 20px;
-color: rgb(137, 49, 236);
-font-weight: 800;
+strong {
+  font-size: 20px;
+  color: #FF4500; /* 강렬한 오렌지색 */
+  font-weight: 800;
 }
-}
+
 .schedule-manager {
   max-width: 600px;
   margin: 50px auto;
@@ -17,72 +18,69 @@ font-weight: 800;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
 }
+
 .schedule-manager h1 {
   text-align: center;
   color: #333;
 }
+
 .form-group {
   margin-bottom: 20px;
 }
+
 .form-group label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
+
 .form-group input, .form-group select {
-  
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .form-group .category-options label {
-  
   align-items: center;
   margin-bottom: 5px;
 }
-.form-group .category-options input {
-  margin-right: 10px;
-}
 
-.form-group .category-options p.festival{
+.form-group .category-options p.festival {
   display: inline;
   text-decoration: underline;
   text-decoration-color: pink;
   text-decoration-thickness: 3px;
-  
 }
-.form-group .category-options p.study{
+
+.form-group .category-options p.study {
   display: inline;
   text-decoration: underline;
   text-decoration-color: yellow;
   text-decoration-thickness: 3px;
-  
-  
 }
-.form-group .category-options p.travel{
+
+.form-group .category-options p.travel {
   display: inline;
   text-decoration: underline;
-  text-decoration-color: #45a049;
+  text-decoration-color: #32CD32; /* 밝은 초록색 */
   text-decoration-thickness: 3px;
 }
+
 button.submit {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #FF4500; /* 오렌지색 */
   color: white;
   font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
 }
-button.submit:hover {
-  background-color: #45a049;
-} 
 
+button.submit:hover {
+  background-color: #FF6347; /* 밝은 빨간색 */
+}
 
 .schedule-manager {
   position: fixed;
@@ -98,7 +96,6 @@ button.submit:hover {
   display: none; /* 기본적으로 숨김 */
   z-index: 1000;
   pointer-events: auto; /* 모달 클릭 허용 */
-  
 }
 
 .schedule-manager form {
@@ -118,9 +115,7 @@ button.submit:hover {
 
 body.modal-open {
   overflow: hidden; /* 모달이 뜬 동안 스크롤 비활성화 */
-
 }
-
 
 /* 오버레이 스타일 */
 #modal-overlay {
@@ -134,6 +129,7 @@ body.modal-open {
   display: none; /* 기본적으로 숨김 */
   pointer-events: auto; /* 오버레이 클릭 허용 */
 }
+
 .color-container {
   position: absolute;
   bottom: 0;
@@ -144,6 +140,8 @@ body.modal-open {
 .color-bar {
   height: 5px;
   width: 100%;
+  margin: 2px 0;
+  border-radius: 2px; /* 둥근 모서리 */
 }
 
 .schedule-list {
@@ -159,4 +157,5 @@ body.modal-open {
   font-size: 0.9rem;
   display: block;
   word-wrap: break-word;
+  border-color: #FF4500; /* 기본 오렌지색 */
 }
