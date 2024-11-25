@@ -67,21 +67,57 @@ function loadCategories() {
     // 날짜 범위 내 색상 및 UI 갱신
     setCategoryColorsInRange(start, end, category);
 
-    // 시작 날짜에 제목 및 일정 추가
-    const startTargetDate = document.querySelector(`.dateC[data-date="${start}"]`);
-    if (startTargetDate) {
-      let scheduleList = startTargetDate.querySelector('.schedule-list');
-      if (!scheduleList) {
-        scheduleList = document.createElement('ul');
-        scheduleList.classList.add('schedule-list');
-        startTargetDate.appendChild(scheduleList);
-      }
+// 시작 날짜에 제목 및 일정 추가
+const startTargetDate = document.querySelector(`.dateC[data-date="${start}"]`);
+if (startTargetDate) {
+  let scheduleList = startTargetDate.querySelector('.schedule-list');
+  if (!scheduleList) {
+    // scheduleList가 없으면 새로 생성
+    scheduleList = document.createElement('ul');
+    scheduleList.classList.add('schedule-list');
+    startTargetDate.appendChild(scheduleList);
+  }
 
-      const scheduleItem = document.createElement('li');
-      scheduleItem.classList.add('schedule-item');
-      scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
-      scheduleItem.textContent = title;
-      scheduleList.appendChild(scheduleItem);
+
+
+  // li 요소 추가
+  const scheduleItem = document.createElement('li');
+  scheduleItem.classList.add('schedule-item');
+  scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
+  scheduleItem.textContent = title;
+  scheduleList.appendChild(scheduleItem);
+}
+
+
+
+
+
+
+
+
+    // 종료 날짜에 타이틀 추가 (5일 이상 차이일 경우)
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    // 날짜 차이를 계산 (밀리초 -> 일 단위 변환)
+    const dateDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+    if (dateDifference >= 4) {
+      const endTargetDate = document.querySelector(`.dateC[data-date="${end}"]`);
+      if (endTargetDate) {
+        let scheduleList = endTargetDate.querySelector('.schedule-list');
+        if (!scheduleList) {
+          scheduleList = document.createElement('ul');
+          scheduleList.classList.add('schedule-list');
+          endTargetDate.appendChild(scheduleList);
+        }
+
+        const scheduleItem = document.createElement('li');
+        scheduleItem.classList.add('schedule-item');
+        scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
+        scheduleItem.textContent = `${title} (End)`; // 종료일 표시
+        scheduleList.appendChild(scheduleItem);
+      }
     }
   });
 }
@@ -166,7 +202,7 @@ $dateContainer.addEventListener('click', (e) => {
         scheduleList.classList.add('schedule-list');
         startTargetDate.appendChild(scheduleList);
       }
-
+  
       const scheduleItem = document.createElement('li');
       scheduleItem.classList.add('schedule-item');
       scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
@@ -174,6 +210,30 @@ $dateContainer.addEventListener('click', (e) => {
       scheduleList.appendChild(scheduleItem);
     }
 
+    // 종료일 데이터 및 UI 업데이트
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+    const dateDifference = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24);
+
+    if (dateDifference >= 4) {
+      const endTargetDate = document.querySelector(`.dateC[data-date="${endDate}"]`);
+      if (endTargetDate) {
+        let scheduleList = endTargetDate.querySelector('.schedule-list');
+        if (!scheduleList) {
+          scheduleList = document.createElement('ul');
+          scheduleList.classList.add('schedule-list');
+          endTargetDate.appendChild(scheduleList);
+        }
+
+        const scheduleItem = document.createElement('li');
+        scheduleItem.classList.add('schedule-item');
+        scheduleItem.style.borderLeft = `5px solid ${getCategoryColor(category)}`;
+        scheduleItem.textContent = `${title} (End)`;
+        scheduleList.appendChild(scheduleItem);
+      }
+    }
+
+    // 새 데이터 로컬스토리지에 저장
     const newCategory = {
       id: String(Math.random()),
       title,

@@ -141,7 +141,7 @@ body.modal-open {
   height: 5px;
   width: 100%;
   margin: 2px 0;
-  border-radius: 2px; /* 둥근 모서리 */
+  border-radius: 2px; 
 }
 
 .schedule-list {
@@ -157,5 +157,5 @@ body.modal-open {
   font-size: 0.9rem;
   display: block;
   word-wrap: break-word;
-  border-color: #FF4500; /* 기본 오렌지색 */
+  border-color: #FF4500; /
 }
