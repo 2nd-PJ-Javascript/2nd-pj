@@ -107,7 +107,7 @@ $startDayIsSunday.addEventListener(
 
     $emptyDiv = document.createElement("div");
     $emptyDiv.textContent = "";
-    $datesC.insertAdjacentElement("afterbegin",$emptyDiv); //빈 디브를 부모 요소의 맨 첫번째 자식으로 추가
+    $datesC.insertAdjacentElement(aft)
   },
   { once: true }
 );
