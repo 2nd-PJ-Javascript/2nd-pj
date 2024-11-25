@@ -85,7 +85,7 @@ $startDayIsMonday.addEventListener("click", function () {
   $datesOfWeek.children[6].textContent = temp;
 
   $datesC.children[0].remove();
-},{once: true});
+});
 
 
 //컬러 테마
