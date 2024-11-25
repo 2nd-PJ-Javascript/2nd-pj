@@ -484,9 +484,20 @@
         localStorage.setItem("calendarEvents", JSON.stringify(events));
       }
 
+      function saveTheme(theme) {
+        localStorage.setItem("theme", JSON.stringify(theme));
+      }
+      function loadTheme() {
+        const storedTheme = localStorage.getItem("theme");
+        return storedTheme
+          ? JSON.parse(storedTheme)
+          : { primary: "#007bff", secondary: "#00d4ff" }; // 기본 색상
+      }
+
       // 달력 생성
       function generateCalendar(year, month) {
         const events = loadEvents();
+        const theme = loadTheme(); // 저장된 테마 불러오기
         const monthKey = `${year}-${String(month + 1).padStart(2, "0")}`;
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
@@ -511,11 +522,12 @@
             dateDiv.style.color = "blue";
           }
 
+          // 이벤트가 있을 경우 처리
           if (events[monthKey] && events[monthKey][day]) {
             const { title, color } = events[monthKey][day];
             const eventDiv = document.createElement("div");
             eventDiv.textContent = title;
-            eventDiv.style.background = color || selectedColor;
+            eventDiv.style.background = color || theme.primary;
 
             eventDiv.style.color = "#fff";
             eventDiv.style.padding = "5px";
@@ -533,6 +545,9 @@
 
           datesContainer.appendChild(dateDiv);
         }
+
+        // 새롭게 렌더링된 날짜 요소들에 hover 색상 적용
+        setHoverColor(theme.primary);
       }
 
       // 색상 선택
@@ -694,9 +709,18 @@
         const colorButton = document.querySelector(".color-btn-corner");
         const colorContainer = document.getElementById("colorButtonContainer");
         const todayButton = document.querySelector(".today-btn-corner");
+        const header = document.querySelector(".header");
+        const body = document.body;
         selectedColor = getComputedStyle(todayButton).backgroundColor;
 
-        updateCalendar(); // 캘린더 초기화
+        // 로컬스토리지에서 테마 불러오기
+        const theme = loadTheme();
+
+        // 저장된 테마를 배경에 적용
+        header.style.background = `linear-gradient(${theme.primary}, ${theme.secondary})`;
+        body.style.background = `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`;
+        todayButton.style.backgroundColor = theme.secondary;
+        colorButton.style.backgroundColor = theme.primary;
 
         // 색상 배열 및 대응 쌍
         const colors = [
@@ -753,6 +777,8 @@
               body.style.background = `linear-gradient(135deg, ${color.primary}, ${color.secondary})`;
               todayBtnCorner.style.background = `${color.secondary}`;
               colorButton.style.background = `${color.primary}`;
+
+              saveTheme({ primary: color.primary, secondary: color.secondary });
 
               document.querySelectorAll(".dateC").forEach((dateC) => {
                 dateC.addEventListener("mouseenter", () => {
