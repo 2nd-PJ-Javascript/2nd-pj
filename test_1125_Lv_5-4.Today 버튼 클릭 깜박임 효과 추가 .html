@@ -132,23 +132,24 @@
       }
 
       .dateC {
+        --hover-color: #007bff; /* 기본 hover 색상 */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         padding: 10px;
         background: #f9f9f9;
-        border-radius: 8px; /* 둥근 모서리 */
+        border-radius: 8px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-        font-size: 1.2rem; /* 날짜 글씨 크기 */
+        font-size: 1.2rem;
         text-align: center;
         cursor: pointer;
         transition: background 0.3s ease, transform 0.2s ease;
-        height: 100%; /* 높이 고정 */
+        height: 100%;
       }
 
       .dateC:hover {
-        background: #007bff;
+        background: var(--hover-color); /* CSS 변수 기반 */
         color: white;
         transform: scale(1.05);
       }
@@ -183,9 +184,11 @@
       }
 
       .today-btn-corner {
+        --hover-color: #007bff; /* 기본 호버 색상 */
         bottom: 0.5%;
         right: 0.5%;
         background-color: #00d4ff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
       }
 
       .color-btn-corner {
@@ -194,8 +197,8 @@
         background-color: #007bff;
       }
 
-      .color-btn-corner:hover {
-        background-color: #00d4ff;
+      .today-btn-corner:hover {
+        background-color: var(--hover-color); /* 동적 색상 */
         transform: scale(1.2);
       }
 
@@ -453,7 +456,7 @@
       const closeBtn = document.getElementById("closeModal");
       const colorOptions = document.querySelectorAll(".color-option");
       let selectedDate = null;
-      let selectedColor = "#007bff"; // 초기 색상
+      let selectedColor = "#ff6b6b";
 
       // 슬라이더 요소 및 뷰포트 왼쪽 10% 영역 생성
       const slider = document.getElementById("slider");
@@ -625,19 +628,34 @@
             // 텍스트 클릭 이벤트: 해당 날짜로 이동
             listItem.addEventListener("click", () => {
               const [year, month] = monthKey.split("-");
-              currentYear = parseInt(year, 10);
-              currentMonth = parseInt(month, 10) - 1;
+              currentYear = parseInt(year, 10); // 연도 갱신
+              currentMonth = parseInt(month, 10) - 1; // 월 갱신 (0부터 시작)
               yearText.textContent = currentYear;
               monthText.textContent = currentMonth + 1;
               generateCalendar(currentYear, currentMonth);
 
-              // 선택된 날짜 깜빡이 효과 호출
-              blinkDate(
-                currentYear,
-                currentMonth,
-                parseInt(day, 10),
-                color.secondary || selectedColor
-              );
+              // 해당 날짜를 찾아 깜빡이는 애니메이션 적용
+              setTimeout(() => {
+                let targetDate = document.querySelector(
+                  `.datesC > .dateC:nth-child(${
+                    parseInt(day) +
+                    new Date(currentYear, currentMonth, 1).getDay()
+                  })`
+                );
+                if (targetDate) {
+                  // 동적으로 CSS 변수 설정
+                  targetDate.style.setProperty(
+                    "--blink-color",
+                    color || selectedColor
+                  );
+
+                  // 애니메이션 적용
+                  targetDate.classList.add("blink");
+
+                  // 일정 시간 후 클래스 제거
+                  setTimeout(() => targetDate.classList.remove("blink"), 1300);
+                }
+              }, 0);
             });
 
             // 리스트 구성
@@ -648,32 +666,6 @@
             eventList.appendChild(listItem);
           }
         });
-      }
-
-      // 깜빡이 효과를 적용하는 함수
-      function blinkDate(year, month, day, color = null) {
-        setTimeout(() => {
-          const firstDayOfWeek = new Date(year, month, 1).getDay();
-          const targetDateIndex = day + firstDayOfWeek - 1;
-
-          const targetDate = document.querySelector(
-            `.datesC > .dateC:nth-child(${targetDateIndex + 1})`
-          );
-
-          if (targetDate) {
-            const todayButton = document.querySelector(".today-btn-corner");
-            const defaultColor = getComputedStyle(todayButton).backgroundColor;
-            const blinkColor = color || selectedColor || defaultColor;
-
-            targetDate.style.setProperty("--blink-color", blinkColor);
-
-            targetDate.classList.add("blink");
-
-            setTimeout(() => {
-              targetDate.classList.remove("blink");
-            }, 1300);
-          }
-        }, 0);
       }
 
       // 이벤트 삭제 함수
@@ -698,12 +690,12 @@
       });
 
       document.addEventListener("DOMContentLoaded", () => {
+        updateSlider(); // 슬라이더 초기화
         const colorButton = document.querySelector(".color-btn-corner");
         const colorContainer = document.getElementById("colorButtonContainer");
         const todayButton = document.querySelector(".today-btn-corner");
         selectedColor = getComputedStyle(todayButton).backgroundColor;
 
-        updateSlider(); // 슬라이더 초기화
         updateCalendar(); // 캘린더 초기화
 
         // 색상 배열 및 대응 쌍
@@ -755,33 +747,6 @@
               const body = document.body;
               const todayBtnCorner =
                 document.querySelector(".today-btn-corner");
-
-              document
-                .querySelector(".today-btn-corner")
-                .addEventListener("click", () => {
-                  const today = new Date();
-                  currentYear = today.getFullYear();
-                  currentMonth = today.getMonth();
-                  const todayDate = today.getDate();
-
-                  yearText.textContent = currentYear;
-                  monthText.textContent = currentMonth + 1;
-
-                  updateCalendar();
-
-                  const todayButton =
-                    document.querySelector(".today-btn-corner");
-                  const defaultColor =
-                    getComputedStyle(todayButton).backgroundColor;
-
-                  blinkDate(
-                    currentYear,
-                    currentMonth,
-                    todayDate,
-                    defaultColor,
-                    true
-                  );
-                });
 
               // 헤더 및 바디 배경 변경
               header.style.background = `linear-gradient(${color.primary}, ${color.secondary})`;
@@ -878,6 +843,82 @@
           handleMouseLeave();
         });
       });
+
+      function blinkDate(year, month, day, color = null, isToday = false) {
+        setTimeout(() => {
+          const firstDayOfWeek = new Date(year, month, 1).getDay();
+          const targetDateIndex = day + firstDayOfWeek - 1;
+
+          const targetDate = document.querySelector(
+            `.datesC > .dateC:nth-child(${targetDateIndex + 1})`
+          );
+
+          if (targetDate) {
+            // color가 없으면 selectedColor 또는 초기 Today 버튼 색상 사용
+            const todayButton = document.querySelector(".today-btn-corner");
+            const defaultColor = getComputedStyle(todayButton).backgroundColor;
+            const blinkColor = color || selectedColor || defaultColor;
+
+            // 깜빡임 색상 설정
+            targetDate.style.setProperty("--blink-color", blinkColor);
+
+            // hover 색상도 동기화
+            setHoverColor(blinkColor);
+
+            targetDate.classList.add("blink");
+
+            // 일정 시간 후 깜빡임 클래스 제거
+            setTimeout(() => {
+              targetDate.classList.remove("blink");
+            }, 1300);
+          }
+        }, 0);
+      }
+      function setHoverColor(color) {
+        document.querySelectorAll(".dateC").forEach((dateC) => {
+          dateC.style.setProperty("--hover-color", color);
+        });
+      }
+
+      document
+        .querySelector(".today-btn-corner")
+        .addEventListener("click", () => {
+          const today = new Date();
+          currentYear = today.getFullYear();
+          currentMonth = today.getMonth();
+          const todayDate = today.getDate();
+
+          yearText.textContent = currentYear;
+          monthText.textContent = currentMonth + 1;
+
+          updateCalendar();
+
+          const todayButton = document.querySelector(".today-btn-corner");
+          const defaultColor = getComputedStyle(todayButton).backgroundColor;
+
+          // 깜빡임과 hover 색상 동기화
+          blinkDate(currentYear, currentMonth, todayDate, defaultColor, true);
+        });
+
+      document
+        .querySelector(".today-btn-corner")
+        .addEventListener("click", () => {
+          const today = new Date();
+          currentYear = today.getFullYear();
+          currentMonth = today.getMonth();
+          const todayDate = today.getDate();
+
+          yearText.textContent = currentYear;
+          monthText.textContent = currentMonth + 1;
+
+          updateCalendar();
+
+          // 기본 색상 처리
+          const todayButton = document.querySelector(".today-btn-corner");
+          const defaultColor = getComputedStyle(todayButton).backgroundColor;
+
+          blinkDate(currentYear, currentMonth, todayDate, defaultColor, true);
+        });
 
       // 캘린더 업데이트
       function updateCalendar() {
