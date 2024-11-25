@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Calendar</title>
     <link rel="stylesheet" href="calendar-블로그.css">
-    <link rel="stylesheet" href="calender-블로그.js">
   </head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="./css/main_JW.css"> -->
   <!-- <script src="./js/app_JW.js" defer></script> -->
   <body>
@@ -34,98 +34,103 @@
         <div></div>
         <div></div>
         <div></div>
-        <div class="dateC">1</div>
-        <div class="dateC">2</div>
-        <div class="dateC">3</div>
-        <div class="dateC">4</div>
-        <div class="dateC">5</div>
-        <div class="dateC">6</div>
-        <div class="dateC">7</div>
-        <div class="dateC">8</div>
-        <div class="dateC">9</div>
-        <div class="dateC">10</div>
-        <div class="dateC">11</div>
-        <div class="dateC">12</div>
-        <div class="dateC">13</div>
-        <div class="dateC">14</div>
-        <div class="dateC">15</div>
-        <div class="dateC">16</div>
-        <div class="dateC">17</div>
-        <div class="dateC">18</div>
-        <div class="dateC">19</div>
-        <div class="dateC">20</div>
-        <div class="dateC">21</div>
-        <div class="dateC">22</div>
-        <div class="dateC">23</div>
-        <div class="dateC">24</div>
-        <div class="dateC">25</div>
-        <div class="dateC">26</div>
-        <div class="dateC">27</div>
-        <div class="dateC">28</div>
-        <div class="dateC">29</div>
-        <div class="dateC">30</div>
+        <div class="dateC" id="1">1</div>
+        <div class="dateC" id="2">2</div>
+        <div class="dateC" id="3">3</div>
+        <div class="dateC" id="4">4</div>
+        <div class="dateC" id="5">5</div>
+        <div class="dateC" id="6">6</div>
+        <div class="dateC" id="7">7</div>
+        <div class="dateC" id="8">8</div>
+        <div class="dateC" id="9">9</div>
+        <div class="dateC" id="10">10</div>
+        <div class="dateC" id="11">11</div>
+        <div class="dateC" id="12">12</div>
+        <div class="dateC" id="13">13</div>
+        <div class="dateC" id="14">14</div>
+        <div class="dateC" id="15">15</div>
+        <div class="dateC" id="16">16</div>
+        <div class="dateC" id="17">17</div>
+        <div class="dateC" id="18">18</div>
+        <div class="dateC" id="19">19</div>
+        <div class="dateC" id="20">20</div>
+        <div class="dateC" id="21">21</div>
+        <div class="dateC" id="22">22</div>
+        <div class="dateC" id="23">23</div>
+        <div class="dateC" id="24">24</div>
+        <div class="dateC" id="25">25</div>
+        <div class="dateC" id="26">26</div>
+        <div class="dateC" id="27">27</div>
+        <div class="dateC" id="28">28</div>
+        <div class="dateC" id="29">29</div>
+        <div class="dateC" id="30">30</div>
       </div>
       <button class="today-btn-corner">Today</button>
     </div>
 
     <!-- 메인 공용 캘린더-진욱님 -->
 
+
+    
     <!-- 블로그 -->
      
-    <div class="wrap">
-      <section class="calendar-box">
-        <header>
+    <!-- <div class="modal-overlay" id="modalOverlay"> -->
+      <div class="wrap">
+        <section class="calendar-box">
+          <header>
             <h1 class="top">
-              Feel - Me - Up !
+                Feel - Me - Up !
             </h1>
             <h2 class="bottom">
-              오늘의 나를 기록해보세요.
+                오늘의 나를 기록해보세요.
             </h2>
-          </h1>
-        </header>
-        <article class="main-content">
-          <div class="blog-header">
-              <div class="wrap-title">
-                <input class="title" placeholder="제목을 입력하세요...                                                             "></input>
-                <div class="under-bar"> </div>
-              </div>
-              <!-- <div class="wrap-toggle-text">
-                <div class="toggle-text-A">전체공개</div>
-                <div class="toggle-text-B">나만보기</div>
-              </div> -->
-            <div class="toggle-container">
-              <input
-                type="checkbox"
-                id="toggle"
-                class="toggle-input" />
-              <label
-                for="toggle"
-                class="toggle-label"></label>
-            </div>
-          </div>
-          <div class="blog-write-box">
-            <textarea class="styled-scroller" placeholder="오늘 하루는 어땠나요? ..."></textarea>
-          </div>
-          <div class="blog-bottom">
-            <div class="wrap-good-words">
-              <div class="good-words-top">오늘의 명언!</div>
-              <div class="under-bar-bottom"> </div>
-              <div class="good-words-box">
-                <div class="good-word-bottom-01">어제가 오늘을 너무 많이 차지하게 두지 마라.</div>
-                <div class="good-word-bottom-02">-윌 로저스</div>
+          </header>
+          <article class="main-content">
+            <div class="blog-header">
+                <div class="wrap-title">
+                  <input class="title" id="diary-title" placeholder="제목을 입력하세요...                                                             "></input>
+                  <div class="under-bar"> </div>
+                </div>
+                <!-- <div class="wrap-toggle-text">
+                  <div class="toggle-text-A">전체공개</div>
+                  <div class="toggle-text-B">나만보기</div>
+                </div> -->
+              <div class="toggle-container">
+                <input
+                  type="checkbox"
+                  id="toggle"
+                  class="toggle-input" />
+                <label
+                  for="toggle"
+                  class="toggle-label"></label>
               </div>
             </div>
-            <div class="wrap-save-button">
-              <button class="save">저장</button>
+            <div class="blog-write-box">
+              <textarea class="styled-scroller" id="diary-text-content" placeholder="오늘 하루는 어땠나요? ..."></textarea>
             </div>
+            <div class="blog-bottom">
+              <div class="wrap-good-words">
+                <div class="good-words-top">오늘 이 순간의 명언!</div>
+                <div class="under-bar-bottom"> </div>
+                <div class="good-words-box">
+                  <div class="good-word-bottom-sc">어제가 오늘을 너무 많이 차지하게 두지 마라.</div>
+                  <div class="good-word-bottom-wr">-윌 로저스</div>
+                </div>
+              </div>
+              <div class="wrap-save-button">
+                <button class="save">저장</button>
+              </div>
+            </div>
+          </article>
+          <div class="wrap-button">
+            <button class="back-to-main">
+              <p>메인</p>으로
+            </button>
           </div>
-        </article>
-        <div class="wrap-button">
-          <button class="back-to-main">
-            <p>메인</p>으로
-          </button>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </body>
+
+  <script src="calendar-블로그..js" defer></script>
 </html>

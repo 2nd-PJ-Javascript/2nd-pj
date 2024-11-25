@@ -1,5 +1,7 @@
 /* Reset CSS */
 @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css");
+/* font awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css');
 /* Montserrat Google-Font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
 /* Noto Sans Korean Google-Font */
@@ -15,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #007bff, rgb(65, 105, 225, 0.8)); /* 기본 배경 */
+  background: linear-gradient(135deg, #007bff, #00d4ff); /* 기본 배경 */
   background-size: 400% 400%; /* 애니메이션을 위한 크기 조정 */
   animation: gradientAnimation 10s ease infinite; /* 애니메이션 추가 */
 }
@@ -122,6 +124,30 @@ body {
   transform: scale(1.05);
 }
 
+.dateC {
+  position: relative; /* 부모 요소에 상대 위치 지정 */
+  padding: 10px; /* 여유 공간 추가 */
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 10px; 
+  right: 10px; 
+  font-size: 20px; 
+  color: #f9f9f9; 
+  cursor: pointer; 
+  transition: color 0.3s ease; 
+}
+
+.edit-icon:hover {
+  color: #333; /* 호버 시 색상 변경 */
+}
+
+/* 저장 후에도 호버 효과를 유지하기 위한 재정의 */
+.edit-icon.no-hover {
+  transition: none; /* 혹시 임시로 제거되었다면 복원 */
+}
+
 /* 빈 칸 스타일 */
 .datesC div:nth-child(-n + 7):empty {
   background: none;
@@ -159,20 +185,8 @@ body {
 
 
 /*  =========================블로그========================== */
-
-
-/* 기본 스타일 */
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
-}
-
 /* JS 작업 전 메인 공용 달력 위에 얹은 채로 css 작업 진행*/
+
 .wrap {
   position: absolute;
 }
@@ -190,7 +204,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* opacity: 0.9; */
+  opacity: 1;
 }
 
 
@@ -214,13 +228,15 @@ header {
   text-align: center;
   letter-spacing: 2.2px;
   font-family: "Montserrat", sans-serif;
+  background: #007bff;
+  color: white;
 }
 
 
 .calendar-box header .bottom {
-  background: #fb593c;
+  background: #f0f0f0;
   padding: 13px;
-  filter: drop-shadow(2px 6px 5px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(2px 6px 5px rgba(0, 0, 0, 0.2));
   font-weight: 700;
   font-size: 1.2rem;
   font-family: "Noto Sans KR", sans-serif;
@@ -358,7 +374,8 @@ header {
 
 /* 스크롤바 스타일 */
 .styled-scroller::-webkit-scrollbar {
-  width: 100px; /* 스크롤바 너비 */
+  width: 15px; /* 스크롤바 너비 */
+  cursor: default;
 }
 
 .styled-scroller::-webkit-scrollbar-thumb {
@@ -411,12 +428,12 @@ header {
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.good-word-bottom-01, .good-word-bottom-02 {
+.good-word-bottom-sc, .good-word-bottom-wr {
   font-family: "Noto Sans KR", sans-serif;
   color: #333;
 }
 
-.good-word-bottom-02 {
+.good-word-bottom-wr {
   color: #777;
   font-size: 14px;
 }
@@ -471,7 +488,7 @@ button.back-to-main {
 }
 
 .wrap-button .back-to-main:hover {
-  background: #fb593c;
+  background: #007bff;
   cursor: pointer;
   transform: scale(1.1);
 }
