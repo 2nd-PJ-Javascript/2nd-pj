@@ -59,6 +59,8 @@ body {
   background: #007bff;
   color: white;
   font-size: 1.8rem;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
 }
 
 .header button {
@@ -78,11 +80,12 @@ body {
 .dates-of-week {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* 가로 7칸 */
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   background: #f0f0f0;
   padding: 1% 0;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
   border-bottom: 2px solid #ddd;
   margin-bottom: 10px; /* 요일과 날짜 사이 간격 */
 }
@@ -106,7 +109,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: start;
+  font-family: "Montserrat", sans-serif;
   padding: 10px;
   background: #f9f9f9;
   border-radius: 8px; /* 둥근 모서리 */
@@ -168,6 +172,7 @@ body {
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -439,13 +444,14 @@ header {
 }
 
 /*  저장 버튼 */
-.wrap-save-button {
+.wrap-button {
   display: flex;
   justify-content: end;
   align-items: end;
 }
 
-.save {
+.save ,
+.delete{
   border: none;
   height: 40px;
   width: 65px;
@@ -455,11 +461,18 @@ header {
   transition: all 0.3s ease;
 }
 
-.save:hover {
+.save {
+  margin-left: 30px;
+}
+
+.save:hover,
+.delete:hover {
   background: #333;
   color: #f6f6f6;
   filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.3));
 }
+
+/* 삭제 버튼 */
 
 
 /* ======== 하단 '메인으로' 버튼 ======== */

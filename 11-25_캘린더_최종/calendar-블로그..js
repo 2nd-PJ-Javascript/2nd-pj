@@ -8,7 +8,8 @@ blogModal.style.display = "none";
 
 const $diaryTitle = document.getElementById("diary-title");
 const $diaryTextContent = document.getElementById("diary-text-content");
-const $saveButton = document.querySelector(".save");
+const $saveBtn = document.querySelector(".save");
+const $deleteBtn = document.querySelectorAll(".delete");
 const randomSentenseElement = document.querySelector(".good-word-bottom-sc");
 const randomWriterElement = document.querySelector(".good-word-bottom-wr");
 
@@ -92,7 +93,12 @@ function generateRandomQuote() {
   randomWriterElement.innerHTML = writer;
 }
 
-//===============블로그 제목/ 글 작성 내용 저장 및 로드=================//
+
+
+
+
+//===============블로그 제목/ 글 작성 내용 저장 삭제 및 로드=================//
+
 // 데이터 로드
 function loadData() {
   generateRandomQuote();
@@ -103,7 +109,7 @@ function loadData() {
     if (content) $diaryTextContent.value = content;
   }
 }
-$saveButton.addEventListener("click", (e) => {
+$saveBtn.addEventListener("click", (e) => {
   // 데이터 저장
 
   const data = {
@@ -115,8 +121,27 @@ $saveButton.addEventListener("click", (e) => {
   // localStorage.setItem(`diaryData_${parentId}`, JSON.stringify(data)); // JSON 데이터를 로컬 스토리지에 저장
   localStorage.setItem(`diaryData_${dateId}`, JSON.stringify(data)); // JSON 데이터를 로컬 스토리지에 저장
 
-  alert("블로그가 저장되었습니다!");
+  alert("블로그가 저장되었습니다.");
   findData();
+});
+
+
+//데이터 삭제
+$deleteBtn.forEach((btn) => {
+  btn.addEventListener('click', () =>  {
+    if (dateId) {
+      // 선택된 날짜에 대한 로컬 스토리지 데이터 삭제
+      localStorage.removeItem(`diaryData_${dateId}`);
+
+      // 제목 및 내용 초기화
+      $diaryTitle.value = "";
+      $diaryTextContent.value = "";
+
+      alert("블로그가 삭제되었습니다.");
+
+      location.reload();
+    }
+  });
 });
 
 
@@ -129,7 +154,7 @@ function findData() {
       //로컬스토리지에 데이터가 있다면
       let dateNode = document.getElementById(`${i}`); //해당 노드(날짜) 가져오기
       const hasDiv = dateNode.querySelector("div") !== null; //자식노드로 div 있는지 검사 (처음 화면 렌더링 시 실행되고, 저장버튼 누를 시 실행되는데 중복 체크 방지를 위해)
-      console.log(hasDiv);
+      // console.log(hasDiv);
       if (hasDiv) {
         //div가 있다면 return
         return;
@@ -137,8 +162,9 @@ function findData() {
       //없다면
       let divNode = document.createElement("div");
       // let iconNode = document.createElement("i");
-      divNode.innerHTML = "◎";
+      divNode.innerHTML = "✔";
       dateNode.appendChild(divNode);
     }
   }
 }
+
