@@ -1,0 +1,104 @@
+body{
+    position: relative;
+}
+a{
+    text-decoration: none;
+}
+button{
+    border: 0;
+    background-color: transparent; 
+}
+.dropdown{
+    position: absolute;
+    top: 10%;
+    left: 9%;
+    /* border: 1px solid #000; */
+    width: 180px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+.dropdown button.dropdown-toggle{
+    color: white;
+    /* border: 1px dashed #000; */
+    font-size: 35px;
+    text-align: end;
+    padding-right: 20px;
+}
+.dropdown .dropdown-menu{
+    display: none;
+}
+.dropdown .dropdown-menu.show{
+    display: block;
+}
+.dropdown ul.change-start-day{
+    border-radius: 30px;
+}
+.dropdown ul.change-start-day span{
+    /* border: 1px solid green; */
+    display: block;
+    line-height: 35px;
+    font-size: 22px;
+    padding: 5px 0 0 5px;
+    font-weight: 700;
+    background: #f0f0f0;
+}
+.dropdown ul.change-start-day li.start-day{
+    /* border: 1px solid violet; */
+    font-size: 22px;
+    line-height: 35px;
+    background-color: rgb(230, 230, 230);
+    display: block;
+}
+.dropdown ul.change-start-day li.start-day a{
+    color: rgb(41, 41, 41);
+    font-weight: 700;
+    display: block;
+    padding-left: 5px;
+}
+.dropdown ul.change-start-day li.start-day a:hover{
+    background: rgb(202, 198, 198);
+}
+.dropdown .dropdown-menu ul.change-colors span{
+    display: block;
+    height: 35px;
+    font-size: 22px;
+    /* border: 1px solid #000; */
+    line-height: 35px;
+    background: #f0f0f0;
+    font-weight: 700;
+    padding: 5px 0 0 5px;
+}
+.dropdown .dropdown-menu ul.change-colors .colors{
+    display: flex;
+    height: 35px;
+    line-height: 37px;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid #000; */
+    background-color: rgb(230, 230, 230);
+    padding: 1px 5px;
+}
+.dropdown .dropdown-menu ul.change-colors .colors li{
+    font-size: 30px;
+}
+.dropdown .dropdown-menu ul.change-colors .colors li.theme-color1 {
+    background: linear-gradient(45deg, pink 50%, white 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dropdown .dropdown-menu ul.change-colors .colors li.theme-color2{
+    background: linear-gradient(45deg, beige 50%, rgba(77, 55, 15, 0.747) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dropdown .dropdown-menu ul.change-colors .colors li.theme-color3{
+    background: linear-gradient(45deg, rgb(231, 231, 195) 50%, rgb(219, 218, 218) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dropdown .dropdown-menu ul.change-colors .colors li.theme-color4{
+    background: linear-gradient(45deg, rgb(127, 221, 170) 50%, rgb(79, 88, 88) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
