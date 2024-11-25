@@ -113,9 +113,3 @@ button{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-.music-player{
-    position: absolute;
-    right: 83%;
-    top: 90%;
-}
