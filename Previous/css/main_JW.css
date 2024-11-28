@@ -1,0 +1,114 @@
+/* Reset CSS */
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css");
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* 박스 우하단 원형 버튼 */
+.today-btn-corner {
+  position: absolute; /* 부모 요소 기준으로 위치 설정 */
+  bottom: -20px; /* 우하단으로 살짝 튀어나오게 배치 */
+  right: -50px; /* 우하단으로 살짝 튀어나오게 배치 */
+  width: 60px; /* 버튼 크기 */
+  height: 60px; /* 버튼 크기 */
+  background-color: #007BFF; /* 버튼 배경색 */
+  color: white; /* 텍스트 색상 */
+  border: none; /* 테두리 제거 */
+  border-radius: 50%; /* 원형 */
+  font-size: 12px; /* 텍스트 크기 */
+  cursor: pointer; /* 마우스 커서 변경 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
+  display: flex; /* 텍스트 가운데 정렬 */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* 호버 효과 */
+}
+
+/* 호버 효과 */
+.today-btn-corner:hover {
+  background-color: #0056b3; /* 어두운 파란색 */
+  transform: scale(1.1); /* 크기 약간 확대 */
+}
+
+/* calendar에 상대 위치 설정 */
+.calendar {
+  position: relative; /* 버튼 위치 기준 */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #007BFF;
+  color: white;
+}
+
+.header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.today-container {
+  text-align: center; /* 버튼을 중앙 정렬 */
+  margin: 15px 0; /* 위아래 여백 추가 */
+}
+
+.today-btn {
+  background-color: #007BFF; /* 파란색 배경 */
+  color: white; /* 흰색 글씨 */
+  border: none; /* 테두리 제거 */
+  padding: 10px 20px; /* 버튼 크기 */
+  border-radius: 5px; /* 둥근 모서리 */
+  font-size: 16px; /* 글씨 크기 */
+  cursor: pointer; /* 마우스 오버 시 커서 변경 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 살짝 그림자 추가 */
+  transition: background-color 0.3s ease; /* 배경색 변화 효과 */
+}
+
+.today-btn:hover {
+  background-color: #0056b3; /* 호버 시 어두운 파란색 */
+}
+
+.dates-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  background: #e9ecef;
+  padding: 10px 0;
+}
+
+.dates-of-week div {
+  font-weight: bold;
+  color: #555;
+}
+
+.datesC {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+
+.dateC {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dateC:hover {
+  background: #007BFF;
+  color: white;
+}

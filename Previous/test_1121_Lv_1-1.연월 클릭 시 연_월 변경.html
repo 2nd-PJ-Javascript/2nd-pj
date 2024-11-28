@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Calendar with Editable Year/Month</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #007bff, #00d4ff);
+    }
+
+    .calendar {
+      width: 90%;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+      font-size: 1.5rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 100;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .edit-year-month {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 200;
+      text-align: center;
+    }
+
+    .edit-year-month input {
+      font-size: 1.2rem;
+      padding: 5px;
+      margin: 10px;
+      width: 80px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .dates-of-week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      background: #f0f0f0;
+      padding: 10px 0;
+      font-weight: bold;
+    }
+
+    .datesC {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .dateC {
+      text-align: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dateC:hover {
+      background: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="header" id="monthYear">2024년 11월</div>
+    <div class="dates-of-week">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+    <div class="datesC"></div>
+  </div>
+
+  <!-- Overlay and Edit UI -->
+  <div class="overlay" id="overlay">
+    <div class="edit-year-month">
+      <input type="number" id="yearInput" value="2024" min="1900" max="2100">
+      <input type="number" id="monthInput" value="11" min="1" max="12">
+      <button id="saveButton">저장</button>
+    </div>
+  </div>
+
+  <script>
+    // 전역 변수
+    let currentYear = 2024;
+    let currentMonth = 10; // 11월 (0부터 시작)
+    const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+
+    // 요소 참조
+    const monthYearElement = document.getElementById("monthYear");
+    const datesContainer = document.querySelector(".datesC");
+    const overlay = document.getElementById("overlay");
+    const yearInput = document.getElementById("yearInput");
+    const monthInput = document.getElementById("monthInput");
+    const saveButton = document.getElementById("saveButton");
+
+    // 날짜 데이터를 생성
+    function generateCalendar(year, month) {
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDay = new Date(year, month, 1).getDay();
+
+      // 달력 초기화
+      datesContainer.innerHTML = "";
+
+      // 빈 칸 추가
+      for (let i = 0; i < firstDay; i++) {
+        const emptyDiv = document.createElement("div");
+        datesContainer.appendChild(emptyDiv);
+      }
+
+      // 날짜 추가
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateDiv = document.createElement("div");
+        dateDiv.classList.add("dateC");
+        dateDiv.textContent = day;
+        datesContainer.appendChild(dateDiv);
+      }
+    }
+
+    // 캘린더 업데이트
+    function updateCalendar() {
+      monthYearElement.textContent = `${currentYear}년 ${monthNames[currentMonth]}`;
+      generateCalendar(currentYear, currentMonth);
+    }
+
+    // 연/월 수정 UI 열기
+    monthYearElement.addEventListener("click", () => {
+      overlay.classList.add("active");
+      yearInput.value = currentYear;
+      monthInput.value = currentMonth + 1;
+    });
+
+    // 저장 버튼 클릭
+    saveButton.addEventListener("click", () => {
+      const newYear = parseInt(yearInput.value, 10);
+      const newMonth = parseInt(monthInput.value, 10) - 1;
+
+      if (newYear >= 1900 && newYear <= 2100 && newMonth >= 0 && newMonth <= 11) {
+        currentYear = newYear;
+        currentMonth = newMonth;
+        updateCalendar();
+        overlay.classList.remove("active");
+      } else {
+        alert("올바른 연도와 월을 입력하세요.");
+      }
+    });
+
+    // 초기화
+    updateCalendar();
+  </script>
+</body>
+</html>
