@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fill-me-Up</title>
+    <link rel="icon" href="./img/F-favicon.ico" />
+    <link rel="stylesheet" href="./main.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="mouse-follow-x hidden" id="mouseFollowX">×</div>
+    <div class="calendar">
+      <div class="header">
+        <button id="prev">🡄</button>
+        <div class="header-center">
+          <span id="yearText" contenteditable="true">2024</span>년
+          <span id="monthText" contenteditable="true">11</span>월
+        </div>
+        <button id="next">🡆</button>
+      </div>
+      <div class="dates-of-week">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+      <div class="datesC"></div>
+      <button class="color-btn-corner">Color</button>
+      <div id="colorButtonContainer"></div>
+      <button class="today-btn-corner">Today</button>
+    </div>
+    <!-- 모달 -->
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <span>✏️</span>
+        <span>작</span>
+        <span>성</span>
+      </div>
+      <div class="modal-body">
+        <!-- 왼쪽 영역: 기존 기능 -->
+        <div class="modal-content">
+          <div class="saved-events">
+            <ul id="eventList2"></ul>
+          </div>
+          <h2 class="modalItinerary">📅일정</h2>
+          <input type="text" id="titleInput" placeholder="제목 입력" />
+          <textarea id="contentInput" placeholder="내용 입력"></textarea>
+          <div class="color-picker">
+            <div
+              class="color-option"
+              style="background: #ff6b6b"
+              data-color="#ff6b6b"
+            ></div>
+            <div
+              class="color-option"
+              style="background: #ffa502"
+              data-color="#ffa502"
+            ></div>
+            <div
+              class="color-option"
+              style="background: #1e90ff"
+              data-color="#1e90ff"
+            ></div>
+            <div
+              class="color-option"
+              style="background: #2ed573"
+              data-color="#2ed573"
+            ></div>
+            <div
+              class="color-option"
+              style="background: #3742fa"
+              data-color="#3742fa"
+            ></div>
+          </div>
+          <button id="saveBtn">저장</button>
+        </div>
+        <!-- 오른쪽 영역: 빈 공간 -->
+        <div class="modal-content">
+          <h2 class="modalDiary">📝일기장</h2>
+          <input type="text" id="titleInput" plac#eholder="제목 입력" />
+          <textarea id="contentInput" placeholder="내용 입력"></textarea>
+          <button id="saveBtn2">저장</button>
+        </div>
+      </div>
+    </div>
+    <div id="slider" class="hidden-slider">
+      <ul id="eventList">
+        <!-- 슬라이더 요소 넣기 테스트 -->
+        <!-- <li>1</li> 
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li> -->
+      </ul>
+    </div>
+  </body>
+</html>
