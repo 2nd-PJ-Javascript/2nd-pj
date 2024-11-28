@@ -968,6 +968,11 @@
           event.target.style.boxShadow = ""; // 초기화
         }
       }
+
+      document.addEventListener('keydown', e => {
+          console.log(e);
+        });
+
       document.addEventListener("DOMContentLoaded", () => {
         applyThemeToFocus(); // 초기 테마 적용
         updateSlider(); // 슬라이더 초기화
