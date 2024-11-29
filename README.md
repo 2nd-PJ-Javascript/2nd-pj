@@ -2,21 +2,21 @@
 # 2nd-PJ-Javascript ~ Fill-me-up
 ![](https://velog.velcdn.com/images/thol-i/post/7c327cb4-29e3-4420-ab98-d3185be1f95f/image.png)
 
-두 번째 프로젝트: HTML + CSS + Javascript를 활용하여 스케쥴러 제작
-<br>ㄴ 기존 어플의 보완점을 개선
+두 번째 프로젝트: HTML + CSS + Javascript 활용하여 스케쥴러 제작
+<br>➽ 기존 어플의 보완점 개선
 
-#### 🗓️ 프로젝트 기간: 24/11/19 ~ 24/11/28
+## 🗓️ 프로젝트 기간: 24/11/19 ~ 24/11/28
 ![](https://velog.velcdn.com/images/thol-i/post/5851cf75-5d8e-41e9-a558-00d3778513cd/image.png)
 
 
-#### 👤프로젝트 맴버
+## 👤 프로젝트 맴버
 [![GitHub Badge](https://img.shields.io/badge/rlawjdgkr-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/rlawjdgkr)
-[![GitHub Badge](https://img.shields.io/badge/yujin-5-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/yujin-5)
+[![GitHub Badge](https://img.shields.io/badge/yujin－5-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/yujin-5)
 [![GitHub Badge](https://img.shields.io/badge/ThoI－i-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/ThoI-i)
 [![GitHub Badge](https://img.shields.io/badge/Mabbakk-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/Mabbakk)
 
 
-## Tech Stack with Tools
+## ⚙️ Tech Stack with Tools
 ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black&labelColor=F7DF1E)
@@ -36,7 +36,7 @@
 
 
 
-## 시연 영상
+## 🎬 시연 영상
 ### 🔹테마 색상 변경
 ![](https://velog.velcdn.com/images/thol-i/post/d80a0807-46d1-46e3-99b9-6e92382adec6/image.gif)
 
@@ -63,58 +63,36 @@
 
 ![](https://velog.velcdn.com/images/thol-i/post/8677b9f7-f02c-4ae9-a530-f843b493a8f3/image.gif)
 
+## 📜 [회의록](https://www.notion.so/14220f09dc2a808d8917cd0901bc45ff?v=14220f09dc2a81399d96000cccccc8a0)
 
+## 📌 트래블 슈팅
+🔹캘린더 구성: 자바스크립트 Date() 객체 → 오늘 날짜 기준 윤년 계산 → 달력 생성<br>
+➽   Date() 객체 → 달력 규칙, 시간 계산 알고리즘 적용 → 바로 사용<br>
+🔔 **Date() 객체 범위: -271,821년 전 ~ +275,760년 후**<br>
+                      
+🔹로컬 스토리지: 다음달/특정 연월 이동 - 데이터 삭제 후 재호출 → 데이터 저장/호출 방법?<br>
+➽   로컬 스토리지 데이터 저장/호출 →  재사용
 
+## 🔄 업데이트 예정
+🔹일정일 종료 알림
 
-## **[1페이지]()**
-![1페이지]()
+🔹일기장
+     - 회원가입 / 친구 추가
+     - 공유 기능(공개/비공개) + 댓글 / 좋아요
 
-## **[2페이지]()**
-![2페이지]()
+🔹슬라이더 일정 공간 초과 → 연월 하단탭으로 재정렬
 
-## **[3페이지]()**
+🔹커스텀 태그(#): #크리스마스, #생일
 
-### 📜[회의록](https://www.notion.so/14220f09dc2a808d8917cd0901bc45ff?v=14220f09dc2a81399d96000cccccc8a0)
+🔹PC-앱(모바일) 연동
 
-### ✒️배운점
-<details>
-  <summary>1.</summary>
-내용
-</details>
-<details>
-  <summary>2.</summary>
-내용
-</details>
-<details>
-  <summary>3.</summary>
-  ```html
-  <video src="./img_JW/Atc1_Video.mp4" autoplay muted playsinline></video>
-  ```
-</details> 
-<details>
-<summary>4.</summary>
-내용
-</details>
-<details>
-<summary>5.</summary>
-내용
-</details>
-
-
-### 📌트래블 슈팅
-#### 🔹캘린더 구성: 자바스크립트 Date() 객체 → 오늘 날짜 기준 윤년 계산 → 달력 생성
-#### 🔹로컬 스토리지: 다음달/특정 연월 이동 - 데이터 삭제 후 재호출 → 데이터 저장/호출 방법?
-
-1️⃣ <br>
-2️⃣ 내용
-
-### 💡느낀점
-rlawjdgkr
-- 1
-<br>→ 1
-
-yujin-5
-
+## 💡 느낀점
+[![GitHub Badge](https://img.shields.io/badge/rlawjdgkr-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/rlawjdgkr) <br>
+자바스크립트까지 활용하여 프로젝트를 함으로써, 코드를 작성하는 것에 대해 아직 서툴고 특히 주석을 하나하나씩 달아보는 것을 습관을 들여야하는데 그런 부분이 아직 많이 미흡한 것 같았습니다.
+프로젝트를 하면서 코드가 제가 원하던 대로 안될때마다 짜증도 나고 답답했지만 팀원분들과의 소통을 통해 더 사기가 증가하기도 하고 점점 완성이 되어 가면서 시간이 걸리더라도 놓지 않으면 할 수는 있구나라고 느꼈습니다
+비록 프로젝트가 끝났지만 개인적으로 더 구현해보면서 부족한 점을 더 고쳐나가야 할 것 같습니다!
+___
+[![GitHub Badge](https://img.shields.io/badge/yujin－5-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/yujin-5) <br>
 🔹열정 <br>
 주말에 노트북 화면에서 CSS 작업을 하는 게 불편해 작업 효율성을 높이고자 pc방에서 데스크탑을 활용해 작업함.
 이런 열정으로 부족한 부분은 있지만 처음 구상했던 일주일 시작 요일 변경 및 컬러 테마 변경 기능을 모두 구현해낼 수 있었다고 생각함.
@@ -130,16 +108,17 @@ yujin-5
 작업 중 같은 기능을 하는 코드를 여러 줄 작성하면서 비효율적으로 코드를 구현하고 있다는 느낌을 받음.
 반복된 절차를 함수화하지 않아 가독성과 유지보수성이 떨어졌다고 생각함.
 함수를 다시 공부해서 추후 프로젝트 시에는 코드 재사용성을 높이는 방식을 고려할 계획임.
+___
+[![GitHub Badge](https://img.shields.io/badge/ThoI－i-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/ThoI-i) <br>
+🔹역량 재확인: ex) 로컬 스토리지<br>
 
-ThoI-i
-#### 🔹역량 재확인: ex) 로컬 스토리지
-#### 🔹다양성 중요: 고착화 X
-#### 🔹변수 설계, 리펙토링, 모듈화의 중요성
-     - 변수 재사용⬆
-     - 유사 기능 코드 재작성⬆
-     - 기능 추가 시 변경 코드⬆
-        🚨스파게티 코드
-Mabbakk
-- 블로그 작성, 저장 및 데이터 로드 등 전체적 흐름을 체계적으로 구현하려니 막히는 부분이 많았음.
+🔹다양성 중요: 고착화 X <br>
+
+🔹변수 설계, 리펙토링, 모듈화의 중요성 <br>
+     - 변수 재사용⬆ ➽ 유사 기능 코드 재작성⬆ ➽ 기능 추가 시 변경 코드⬆ <br>
+     🚨스파게티 코드  <br>
+___
+[![GitHub Badge](https://img.shields.io/badge/Mabbakk-181717?logo=github&logoColor=white&labelColor=181717)](https://github.com/Mabbakk) <br>
+🔹블로그 작성, 저장 및 데이터 로드 등 전체적 흐름을 체계적으로 구현하려니 막히는 부분이 많았음.
 사소한 부분으로 인해 구현 기능의 유무를 결정하는 것을 보고 내 뜻대로 되지 않음에 시간이 많이 소요된 점도 있음. 그러나 오류를 바로잡고 방법을 찾아 제 기능을 발휘할 때의 희열감은 잊지 못 할 것 같음.
 향후 흐름에 대한 이해도를 높여 업데이트 사항들을 구현해보고 싶은 생각임
